@@ -13,10 +13,11 @@ class Cliente(db.Model):
 
     senha_hash=db.Column(db.String(200),nullable=False)
 
+    #pets=db.relationship("Pet")
+
     #endereco_pet=db.Relationship("Pet",backref="cliente")
     #telefone_pet=db.Relationship("Pet",backref="cliente")
     #email_pet=db.Relationship("Pet",backref="cliente")
-
     #carrinho=db.Relationship("loja",secondary=carrinhos,backref="cliente")
 
     def json(self):
@@ -24,7 +25,4 @@ class Cliente(db.Model):
             "nome": self.nome,
             "endereco": self.endereco,
             "telefone": self.telefone,
-            "email": self.email
-        }
-
-
+            "email": self.email}

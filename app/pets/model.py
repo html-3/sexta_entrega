@@ -8,19 +8,14 @@ class Pet(db.Model):
 
     nome=db.Column(db.String(50),nullable=False)
     descricao=db.Column(db.String(300),nullable=False)
-    dia_hora=db.Column(db.String(11),nullable=False,unique=True)
-    banho=db.Column(db.Boolean,nullable=False)
-    tosa=db.Column(db.Boolean,nullable=False)
-    
-    id_dono=db.Column(db.Integer,nullable=False)
+
+    #id_dono=db.Column(db.Integer,ForeignKey("Cliente.id"))
+    #horarios=db.relationship("Horario")
 
     def json(self):
         return{
             "nome": self.nome,
             "descricao": self.descricao,
-            "dia_hora": self.dia_hora,
-            "banho": self.banho,
-            "tosa": self.tosa,
             "id_dono": self.id_dono}
 
 
