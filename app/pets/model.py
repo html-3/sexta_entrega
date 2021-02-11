@@ -11,10 +11,8 @@ class Pet(db.Model):
     dia_hora=db.Column(db.String(11),nullable=False,unique=True)
     banho=db.Column(db.Boolean,nullable=False)
     tosa=db.Column(db.Boolean,nullable=False)
-
-    endereco=db.Column(db.String(100),ForeignKey("cliente.endereco"))
-    telefone=db.Column(db.String(20),ForeignKey("cliente.telefone"))
-    email=db.Column(db.String(100),ForeignKey("cliente.email"))
+    
+    id_dono=db.Column(db.Integer,nullable=False)
 
     def json(self):
         return{
@@ -23,10 +21,7 @@ class Pet(db.Model):
             "dia_hora": self.dia_hora,
             "banho": self.banho,
             "tosa": self.tosa,
-            "endereco": self.endereco,
-            "telefone": self.telefone,
-            "email": self.email
-        }
+            "id_dono": self.id_dono}
 
 
 
