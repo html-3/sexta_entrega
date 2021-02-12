@@ -7,4 +7,4 @@ horario_api.add_url_rule(
     "/horarios",view_func=VerHorario.as_view("ver_horarios"),methods=["GET"])
 
 horario_api.add_url_rule(
-    "/horarios/marcar",view_func=MarcarHorario.as_view("marcar_horarios"),methods=["GET","POST","PATCH","DELETE"])
+    "/horarios/<int:id>/marcar",view_func=MarcarHorario.as_view("marcar_horarios"),methods=["GET","POST","PATCH","DELETE"])

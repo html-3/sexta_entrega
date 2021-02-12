@@ -40,7 +40,7 @@ class ClientesPets(MethodView):         #/pets
         nome=dados.get("nome")
         descricao=dados.get("descricao")
     
-        if (nome is None) or (descricao is None) or (dia_hora is None) or (banho is None) or (tosa is None):
+        if (nome is None) or (descricao is None):
             return {"erro":"Há algum input vazio."},400
 
         if not isinstance(nome,str) or len(nome)>50:
@@ -55,9 +55,9 @@ class ClientesPets(MethodView):         #/pets
         db.session.add(pet)
         db.session.commit()
         return cliente.json(), 200
-    def delete(self,id):                #deletar pet  [INCOMPLETO]
+    def delete(self,id):                #deletar pet  [deleta todos os pets]
         if get_jwt_identiry!=id:
             return {"erro":"Cliente incorreto."},400
         
-        Cliente.query.filter_by(id=id).delete()
+        Pets.query.filter_by(id_dono=id).all().delete()
         db.session.commit()
