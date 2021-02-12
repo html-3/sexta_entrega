@@ -3,7 +3,7 @@ from flask import request, jsonify #render_template
 from flask.views import MethodView
 #from flask_mail import Message
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
-#from app.extensions import db,mail
+from app.extensions import db #mail
 from .model import Cliente
 
 class ClientesJoin(MethodView):         #/join
@@ -68,7 +68,7 @@ class ClientesLogin(MethodView):        #/login
         if not bcrypt.checkpw(senha.encode(),cliente.senha_hash):
             return {"erro":"Senha inválida."},400
 
-        token=jwt.create_access_token(identity=lutador.id,)
+        token=jwt.create_access_token(identity=cliente.id)
 
         return {"token":token,
                 "email":email},200
@@ -76,7 +76,7 @@ class ClientesLogin(MethodView):        #/login
 class ClientesMenu(MethodView):         #/cliente/<int:id>
     decorators=[jwt_required]
     cliente=Cliente.query.get_or_404(id)
-    def get(self):                      #ver cliente
+    def get(self,id):                   #ver cliente
         if get_jwt_identiry!=id:
             return {"erro":"Cliente incorreto."},400
 

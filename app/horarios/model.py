@@ -4,7 +4,7 @@ from app.extensions import db
 
 class Horario(db.Model):
     __tablename__="horario"
-    id=db.Column(db.Integer,primary_key=True)
+    id_horario=db.Column(db.Integer,primary_key=True)
     
     #id_dono=db.Column(db.String(50),ForeignKey("Pet.id_dono"))
     #nome=db.Column(db.String(50),ForeignKey("Pet.nome"))
